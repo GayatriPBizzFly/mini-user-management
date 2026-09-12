@@ -4,10 +4,13 @@ function UserList() {
   const [users, setUsers] = useState([]);
 
   const fetchUsers = async () => {
+    //This sends a GET request to:
     const res = await fetch("http://localhost:5000/api/users");
+    //converts the backend JSON response into a JavaScript object/array.
     setUsers(await res.json());
   };
 
+  //This stores the user selected using the checkbox.
   const [selectedUser, setSelectedUser] = useState(null);
 
   useEffect(() => {
@@ -48,15 +51,17 @@ function UserList() {
       <h2>Users</h2>
 
       {users.map((user) => (
+        //React needs a unique key when displaying a list.
         <div key={user.id}>
           {user.name} - {user.email} - {user.age}
-          <input type="checkbox" onChange={() => setSelectedUser(users)} /><button onClick={() => deleteUser(user.id)}>Delete</button>
+          <input type="checkbox" onChange={() => setSelectedUser(users)} />
+          <button onClick={() => deleteUser(user.id)}>Delete</button>
         </div>
       ))}
 
 
     {selectedUser && (
-      <button onClick={updateUser}>Update</button>
+      <button onClick={updateUser}>Put</button>
     )}
     </div>
   );

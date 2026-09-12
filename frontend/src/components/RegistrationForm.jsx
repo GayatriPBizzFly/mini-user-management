@@ -10,6 +10,7 @@ function RegistrationForm({ onUserRegistered }) {
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
+  // Copy all existing form data and update the field whose input was changed with its new value.
 
   const handleSubmit = async (e) => {
     e.preventDefault();
